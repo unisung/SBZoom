@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 5 Website Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
+<style>
+    *{margin:0; padding: 0;}
+    .fakeimg{margin:0 20px}
+    .responsive-img{width:100%}
+  </style>
+</head>
+<body>
+
+<div class="p-5 bg-primary text-white text-center">
+  <h1>welcome SBZoom site</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>About us</h2>
+      <h5>Photo of me:</h5>
+      <div class="fakeimg">
+             <img src="{% static 'images/profiles.png' %}" height="100%">
+      </div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      <h3 class="mt-4">Some Links</h3>
+      <p>Lorem ipsum dolor sit ame.</p>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <hr class="d-sm-none">
+    </div>
+    <div class="col-sm-8">
+    <div class="row">
+     <div class="col-sm-9">
+      <h2>분석결과</h2>
+      <h5>Title description, Dec 7, 2020</h5>
+      <div class="fakeimg" style="height:600px; width:650px;">
+     <img src="{% static 'images/map_0.png' %}" usemap="#citymap" class="responsive-img">
+     <map name="citymap">
+          <area shape="poly"  href="/kangnam/res_kangnam" coords="335,324,310,286,283,312,278,347,290,368,303,368,321,382,336,370,344,402,366,426,412,402,420,378,406,359,374,367,345,348">
+     <area shape="poly"  href="/kangnam/res_seocho" coords="274,350,271,311,252,299,226,286,201,308,176,335,207,329,223,330,252,328,254,342">
+     <area shape="poly"  href="" coords="272,354,242,336,220,332,198,334,187,343,186,357,206,390,232,409,266,401,279,379,292,375">
+     <area shape="poly"  href="" coords="204,390,181,360,174,348,143,334,154,360,152,376,172,407,191,409">
+     <area shape="poly"  href="" coords="172,339,164,304,149,292,132,306,108,300,95,314,75,295,71,334,82,356,101,356,122,341,130,325">
+     <area shape="poly"  href="" coords="174,326,199,302,207,286,225,279,164,241,159,262,152,278,161,297,175,320">
+     <area shape="poly"  href="" coords="76,292,94,304,110,294,131,298,148,285,155,252,127,240,126,266,100,268,88,253,79,263">
+     <area shape="poly"  href="" coords="156,244,162,234,57,149,42,158,44,175,8,226,44,254,69,251,76,256,95,249,101,260,120,260,124,234">
+     <area shape="poly"  href="" coords="386,288,393,306,424,318,465,358,488,347,496,331,501,306,483,304,475,293,450,268,449,254,442,248,428,274,412,285">
+     <area shape="poly"  href="" coords="475,286,493,263,512,245,528,232,519,206,518,190,508,182,478,203,445,214,444,245,453,266">
+     <area shape="poly"  href="" coords="434,216,426,198,398,208,390,235,374,263,384,274,419,268,432,246,436,236">
+     <area shape="poly"  href="" coords="388,220,370,258,336,250,322,261,308,242,329,214,332,204,348,199,358,203,365,214">
+     <area shape="poly"  href="" coords="306,246,316,260,294,289,275,294,236,280,236,256,247,246,260,232,279,238">
+     <area shape="poly"  href="" coords="247,222,253,230,222,260,193,251,162,225,124,194,166,173,178,195,202,213,208,225">
+     <area shape="poly"  href="" coords="256,228,256,208,322,206,316,220,304,237,288,236">
+     <area shape="poly"  href="" coords="181,189,216,168,228,152,247,164,243,192,252,205,250,217,210,218">
+     <area shape="poly"  href="" coords="169,172,178,183,232,139,263,105,243,75,224,69,186,89,169,139">
+     <area shape="poly"  href="" coords="238,135,266,109,282,151,276,163,282,169,301,175,309,185,330,193,324,199,254,202">
+     <area shape="poly"  href="" coords="269,111,276,104,294,110,336,146,362,132,387,139,390,149,352,164,332,187,300,172,284,152">
+     <area shape="poly"  href="" coords="337,187,353,189,365,206,389,213,398,195,388,179,390,152,356,165">
+     <area shape="poly"  href="" coords="392,139,408,127,423,130,442,132,446,166,436,184,428,191,400,197,398,186,392,168">
+     <area shape="poly"  href="" coords="276,96,269,77,301,29,314,46,322,60,320,86,360,120,358,127,336,138">
+     <area shape="poly"  href="" coords="304,22,316,3,332,6,363,22,360,54,373,92,355,98,344,99,324,84,326,56">
+     <area shape="poly"  href="" coords="366,23,397,6,420,22,414,38,416,62,409,74,433,87,438,105,425,118,384,130,366,126,359,99,378,93,372,69">
+     </map>
+
+      </div>
+    </div>
+      <!-- Small button groups (default and split) -->
+ <div class="btn-group col-sm-2">
+  <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% for gu1,gu in guzip %}
+    <li><a class="dropdown-item" href="/{{gu1}}/res_{{gu1}}">{{gu}}</a></li>
+
+    {% endfor %}
+  </ul>
+</div>
+</div>
+    
+</div>
+</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+
+  </div>
+</div>
+
+<div class="mt-5 p-4 bg-dark text-white text-center">
+  <p>Footer</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
+   <script>
+   $(document).ready(function() {
+	   $('img[usemap]').rwdImageMaps();
+   });
+   </script>
+
+</body>
+</html>
