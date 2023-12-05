@@ -42,7 +42,8 @@
 <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-sm-2">
-        <table class="table" style="font-size:0.65rem; font-weight:bold;">
+        <table class="table table-stiped table-bordered table-hover table-sm" 
+          style="font-size:0.65rem; font-weight:bold;">
           <tr'>
            {% for t in title %}
            <td>{{t}}</td>
@@ -61,8 +62,17 @@
 
       <div class="col-sm-9" style="background:yellowgreen transparent">
         <div class="container text-center">
-         <h1>franchise</h1>
+        <div class="container text-center">
+            <div class="row">
+              <div class="col"><canvas id="myChart1"></canvas></div>
+              <div class="col"><canvas id="myChart2"></canvas></div>
+            </div>
+            <div class="row">
+              <div class="col"><canvas id="myChart3"></canvas></div>
+              <div class="col"><canvas id="myChart4"></canvas></div>
+            </div>
          </div>
+        </div>
       </div>
     
         <!-- Small button groups (default and split) -->
@@ -90,39 +100,92 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       
 <script>
-        const ctx = document.getElementById('myChart1');
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: {{gigan|safe}},
-            datasets: [{
-              label: '강남구 외식업 일반점포',
-              data: {{ilban}},
-              borderWidth: 1,
-              backgroundColor:'yellow'
-            },
-            {
-              label: '강남구 외식업 프렌차이즈',
-              data: {{franchise}},
-              borderWidth: 1,
-              backgroundColor:'green'
-            },
-            {
-              label: '강남구 외식업 전체',
-              data: {{total}},
-              borderWidth: 1,
-              backgroundColor:'red'
-            },
-            ]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: false
-              }
-            }
-          }
-        });
+  const ctx1 = document.getElementById('myChart1');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 외식업 프렌차이즈',
+        data: {{eatOut}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx2 = document.getElementById('myChart2');
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 서비스업 프렌차이즈',
+        data: {{service}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx3 = document.getElementById('myChart3');
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 소매업 프렌차이즈',
+        data: {{retail}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx4 = document.getElementById('myChart4');
+  new Chart(ctx4, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 전체 프렌차이즈',
+        data: {{total}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
 </script>
 
 </body>

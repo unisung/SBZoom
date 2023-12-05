@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Sum
 
 # Create your views here.
 import pandas as pd
@@ -133,16 +134,136 @@ def total(request):
     return render(request, 'kangnam/total.html', context)
     
     
-def ilban(request):
+#----------------------------------------------------------------#    
     
-    return render(request, 'kangnam/ilban.html', {'guzip':guzip})
+def ilban(request):
+    q1=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KE")) # 구명이 강남 이고 code가 KE(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KS")) # 구명이 강남 이고 code가 KS(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KR")) # 구명이 강남 이고 code가 KR(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KW")) # 구명이 강남 이고 code가 KW(외식+서비스+소매)인 데이타
+    
+
+    qlist =[str(a.quarter) for a in q1 ]
+    eatOut =[int(a.ilban) for a in q1]   #외식업 일반 매출
+    service =[int(a.ilban) for a in q2]  #서비스업 일반
+    retail=[int(a.ilban) for a in q3]    #소매업 일반
+    total=[int(a.sales) for a in q4]     #전체 일반
+
+
+    title=['강남구 일반점포 현황','외식업','서비스업','소매업','전체일반점포']
+     
+    ana_zip = list(zip(qlist,eatOut,service,retail,total))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+
+    context['eatOut'] = eatOut
+    context['service'] = service
+    context['retail'] = retail
+    context['total'] =  total
+
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/ilban.html', context)
+
 
 def franchise(request):
-    return render(request, 'kangnam/franchise.html', {'guzip':guzip})
+    q1=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KE")) # 구명이 강남 이고 code가 KE(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KS")) # 구명이 강남 이고 code가 KS(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KR")) # 구명이 강남 이고 code가 KR(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KW")) # 구명이 강남 이고 code가 KW(외식+서비스+소매)인 데이타
+    
+
+    qlist =[str(a.quarter) for a in q1 ]
+    eatOut =[int(a.franchise) for a in q1]   #외식업 프렌차이즈 매출
+    service =[int(a.franchise) for a in q2]  #서비스업 프렌차이즈
+    retail=[int(a.franchise) for a in q3]    #소매업 프렌차이즈
+    total=[int(a.sales) for a in q4]     #전체 일반
+
+
+    title=['강남구 프렌차이즈 현황','외식업','서비스업','소매업','전체일반점포']
+     
+    ana_zip = list(zip(qlist,eatOut,service,retail,total))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+
+    context['eatOut'] = eatOut
+    context['service'] = service
+    context['retail'] = retail
+    context['total'] =  total
+
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/franchise.html', context)
+
 
 def totalStores(request):
-    return render(request, 'kangnam/totalStores.html', {'guzip':guzip})
+    q1=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KE")) # 구명이 강남 이고 code가 KE(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KS")) # 구명이 강남 이고 code가 KS(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KR")) # 구명이 강남 이고 code가 KR(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KW")) # 구명이 강남 이고 code가 KW(외식+서비스+소매)인 데이타
+    
+
+    qlist =[str(a.quarter) for a in q1 ]
+    eatOut =[int(a.total) for a in q1]   #외식업 전체 매출
+    service =[int(a.total) for a in q2]  #서비스업 전체
+    retail=[int(a.total) for a in q3]    #소매업 전체
+    total=[int(a.total) for a in q4]     #전체 
+
+
+    title=['강남구 전체 점포 현황','외식업','서비스업','소매업','전체일반']
+     
+    ana_zip = list(zip(qlist,eatOut,service,retail,total))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+
+    context['eatOut'] = eatOut
+    context['service'] = service
+    context['retail'] = retail
+    context['total'] =  total
+
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/totalStores.html', context)
+
 
 def totalSales(request):
-    return render(request, 'kangnam/totalSales.html', {'guzip':guzip})
+    q1=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KE")) # 구명이 강남 이고 code가 KE(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KS")) # 구명이 강남 이고 code가 KS(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KR")) # 구명이 강남 이고 code가 KR(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KW")) # 구명이 강남 이고 code가 KW(외식+서비스+소매)인 데이타
+    
+
+    qlist =[str(a.quarter) for a in q1 ]
+    eatOut =[int(a.sales) for a in q1]   #외식업 전체 매출
+    service =[int(a.sales) for a in q2]  #서비스업 전체
+    retail=[int(a.sales) for a in q3]    #소매업 전체
+    total=[int(a.sales) for a in q4]     #전체 
+
+
+    title=['강남구 전체 점포 현황','외식업 매출액(억)','서비스업 매출액(억)','소매업 매출액(억)','전체 매출액(억)']
+     
+    ana_zip = list(zip(qlist,eatOut,service,retail,total))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+
+    context['eatOut'] = eatOut
+    context['service'] = service
+    context['retail'] = retail
+    context['total'] =  total
+
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/totalSales.html', context)
 
