@@ -25,6 +25,9 @@ gulist1 = ['jongno','yongsan','seongdong','kwangjin','dongdaemoon','joonggu',
 guzip = list(zip(gulist1,gulist))
 
 
+def home(request):
+    return render(request, 'kangnam/home.html', {'guzip':guzip})
+
 def index(request):
     return render(request, 'kangnam/index.html', {'guzip':guzip})
 
@@ -49,17 +52,89 @@ def eatOut(request):
     
     
 def service(request):
-    return render(request, 'kangnam/service.html', {'guzip':guzip})
+    q=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KS"))
+
+    qlist =[str(a.quarter) for a in q ]
+    ilban =[int(a.ilban) for a in q]
+    franchise =[int(a.franchise) for a in q]
+    total=[int(a.total) for a in q]
+    sales=[int(a.sales) for a in q]
+    
+    #print(qlist)
+    #print(ilban)
+
+    title=['강남구 서비스업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
+     
+    ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+    context['ilban'] = ilban
+    context['franchise'] = franchise
+    context['total'] = total
+    context['sales'] =  sales
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/service.html',context)
 
 def retail(request):
-    return render(request, 'kangnam/retail.html', {'guzip':guzip})
+    q=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KR")) # 구명이 강남 이고 code가 KR(소매업)인 데이타
+
+    qlist =[str(a.quarter) for a in q ]
+    ilban =[int(a.ilban) for a in q]
+    franchise =[int(a.franchise) for a in q]
+    total=[int(a.total) for a in q]
+    sales=[int(a.sales) for a in q]
+
+
+    title=['강남구 소매업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
+     
+    ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+    context['ilban'] = ilban
+    context['franchise'] = franchise
+    context['total'] = total
+    context['sales'] =  sales
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/retail.html', context)
 
 
 def total(request):
-    return render(request, 'kangnam/total.html', {'guzip':guzip})
+    q=GuModel.objects.filter(Q(guName="KANGNAM") & Q(code="KW")) # 구명이 강남 이고 code가 KW(전체)인 데이타
+
+    qlist =[str(a.quarter) for a in q ]
+    ilban =[int(a.ilban) for a in q]
+    franchise =[int(a.franchise) for a in q]
+    total=[int(a.total) for a in q]
+    sales=[int(a.sales) for a in q]
+
+
+    title=['강남구 전체 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
+     
+    ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
+
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+    context['ilban'] = ilban
+    context['franchise'] = franchise
+    context['total'] = total
+    context['sales'] =  sales
+    context['ana_zip'] = ana_zip
+
+    return render(request, 'kangnam/total.html', context)
     
     
 def ilban(request):
+    
     return render(request, 'kangnam/ilban.html', {'guzip':guzip})
 
 def franchise(request):
@@ -70,3 +145,4 @@ def totalStores(request):
 
 def totalSales(request):
     return render(request, 'kangnam/totalSales.html', {'guzip':guzip})
+

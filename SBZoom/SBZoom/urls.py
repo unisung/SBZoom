@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from kangnam import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('SBZoom/',include('kangnam.urls')),
+    path('SBZoom/',views.home, name="home"),
     path('SBZoom/kangnam/',include('kangnam.urls')),
 ]
