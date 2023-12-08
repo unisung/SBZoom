@@ -1,0 +1,61 @@
+ {% extends 'base.html' %} 
+ {% load static %}  
+ 
+  {% block content %}
+      <div class="col-sm-4" style="background:yellowgreen tran5sparent">
+       <img src="{% static 'images/gangdong.png' %}" width="100%">
+      </div>
+
+      <div class="col-sm-2 mt-3" style="background:yellowgreen transparent">
+        <div class="container text-center">
+         <ul class="list-group">
+  	      <li class="list-group-item list-group-item-success"> <span class="badge bg-primary-subtle border border-primary-subtle text-primary-emphasis rounded-pill"><a href="/SBZoom/gangdong/eatOut">외식</a></span></li>
+          <li class="list-group-item list-group-item-secondary"><span class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill"><a href="/SBZoom/gangdong/service">서비스업</a></span></li>
+  	      <li class="list-group-item list-group-item-info"><span class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill"><a href="/SBZoom/gangdong/retail">소매업</a></span></li>
+  	      <li class="list-group-item list-group-item-warning"><span class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis rounded-pill"><a href="/SBZoom/gangdong/total">총매출</a></span></li>
+  	      <li class="list-group-item list-group-item-danger"><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill"><a href="/SBZoom/gangdong/ilban">일반점포</a></span></li>
+  	      <li class="list-group-item list-group-item-primary"><span class="badge bg-info-subtle border border-info-subtle text-info-emphasis rounded-pill"><a href="/SBZoom/gangdong/franchise">프렌차이즈</a></span></li>
+  	      <li class="list-group-item list-group-item-dark"><span class="badge bg-light-subtle border border-light-subtle text-light-emphasis rounded-pill"><a href="/SBZoom/gangdong/totalStores">총매장</a></span></li>
+  	      <li class="list-group-item list-group-item-success"><span class="badge bg-dark-subtle border border-dark-subtle text-dark-emphasis rounded-pill"><a href="/SBZoom/gangdong/totalSales">총매출</a></span></li>
+         </ul>
+        </div>
+      </div>
+    
+      
+<script>
+        const ctx = document.getElementById('myChart1');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: {{qlist|safe}},
+            datasets: [{
+              label: '강동구 외식업 일반점포',
+              data: {{ilban}},
+              borderWidth: 1,
+              backgroundColor:'yellow'
+            },
+            {
+              label: '강동구 외식업 프렌차이즈',
+              data: {{franchise}},
+              borderWidth: 1,
+              backgroundColor:'green'
+            },
+            {
+              label: '강동구 외식업 전체',
+              data: {{total}},
+              borderWidth: 1,
+              backgroundColor:'red'
+            },
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: false
+              }
+            }
+          }
+        });
+</script>
+
+{% endblock %}

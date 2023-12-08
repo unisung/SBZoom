@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c@fo*pp$54s7-omg0a*t(@q4+9gpa)8-a&os8+7ewn-(_d@61x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,30 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kangnam.apps.KangnamConfig',
+    'gangdong.apps.GangdongConfig',
+    'dobong.apps.DobongConfig',
+    'dongdaemun.apps.DongdaemunConfig',
+    'dongjak.apps.DongjakConfig',
+    'eunpyeong.apps.EunpyeongConfig',
+    'gangbuk.apps.GangbukConfig',
+    'gangseo.apps.GangseoConfig',
+    'geumcheon.apps.GeumcheonConfig',
+    'guro.apps.GuroConfig',
+    'gwanak.apps.GwanakConfig',
+    'gwangjin.apps.GwangjinConfig',
+    'jongro.apps.JongroConfig',
+    'junggu.apps.JungguConfig',
+    'jungnang.apps.JungnangConfig',
+    'mapo.apps.MapoConfig',
+    'nowon.apps.NowonConfig',
+    'seocho.apps.SeochoConfig',
+    'seodaemun.apps.SeodaemunConfig',
+    'seongbuk.apps.SeongbukConfig',
+    'seongdong.apps.SeongdongConfig',
+    'songpa.apps.SongpaConfig',
+    'yangcheon.apps.YangcheonConfig',
+    'yeongdeungpo.apps.YeongdeungpoConfig',
+    'yongsan.apps.YongsanConfig'
 ]
 
 MIDDLEWARE = [

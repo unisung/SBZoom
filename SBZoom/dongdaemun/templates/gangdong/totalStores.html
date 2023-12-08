@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> SBZoom </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
+</head>
+<body>
+
+<div class="p-5 bg-primary text-white text-center">
+  <h1>welcome SBZoom site</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/kangnam">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-sm-2">
+        <table class="table table-stiped table-bordered table-hover table-sm" 
+          style="font-size:0.65rem; font-weight:bold;">
+          <tr'>
+           {% for t in title %}
+           <td>{{t}}</td>
+           {% endfor %}
+         </tr>
+         
+          {% for gigan,eatOut,service,retail,total in ana_zip %}
+          <tr>
+            <td>{{gigan}} </td><td>{{eatOut}}</td><td>{{service}} </td><td>{{retail}}</td><td>{{total}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>  
+
+
+
+      <div class="col-sm-9" style="background:yellowgreen transparent">
+        <div class="container text-center">
+        <div class="container text-center">
+            <div class="row">
+              <div class="col"><canvas id="myChart1"></canvas></div>
+              <div class="col"><canvas id="myChart2"></canvas></div>
+            </div>
+            <div class="row">
+              <div class="col"><canvas id="myChart3"></canvas></div>
+              <div class="col"><canvas id="myChart4"></canvas></div>
+            </div>
+         </div>
+        </div>
+      </div>
+    
+        <!-- Small button groups (default and split) -->
+      <div class="btn-group col-sm-1">
+        <div class="dropdown">
+           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            구명
+           </a>
+  
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {% for gu1,gu in guzip %}
+            <li style="width:80%"><a class="dropdown-item" href="/{{gu1}}/res_{{gu1}}" style="font-size:0.7rem">{{gu}}</a></li>
+        
+            {% endfor %}
+            </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3 p-4 bg-dark text-white text-center">
+  <p>Footer</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+<script>
+  const ctx1 = document.getElementById('myChart1');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 외식업 전체',
+        data: {{eatOut}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx2 = document.getElementById('myChart2');
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 서비스업 전체',
+        data: {{service}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx3 = document.getElementById('myChart3');
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 소매업 전체',
+        data: {{retail}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx4 = document.getElementById('myChart4');
+  new Chart(ctx4, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '강남구 전체 매출액(억)',
+        data: {{total}},
+        borderWidth: 1,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

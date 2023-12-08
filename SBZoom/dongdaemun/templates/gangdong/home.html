@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> SBZoom </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
+<style>
+    *{margin:0; padding: 0;}
+    .fakeimg{margin:0 20px}
+    .responsive-img{width:100%}
+  </style>
+</head>
+<body>
+
+<div class="p-5 bg-primary text-white text-center">
+  <h1>welcome SBZoom site</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>About us</h2>
+      <h5>Photo of me:</h5>
+      <div class="fakeimg">
+             <img src="{% static 'images/profiles.png' %}" height="100%">
+      </div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      <h3 class="mt-4">Some Links</h3>
+      <p>Lorem ipsum dolor sit ame.</p>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <hr class="d-sm-none">
+    </div>
+    <div class="col-sm-8">
+    <div class="row">
+     <div class="col-sm-9">
+      <h2>분석결과</h2>
+      <h5>Title description, Dec 7, 2020</h5>
+      <div class="fakeimg" style="height:600px; width:650px;">
+     <img src="{% static 'images/map_0.png' %}" usemap="#citymap" class="responsive-img">
+     <map name="citymap">
+        <area alt="도봉구" title="도봉구" href="/SBZoom/dobong" coords="342,58,20" shape="circle">
+        <area alt="노원구" title="노원구" href="/SBZoom/nowon" coords="398,98,27" shape="circle">
+        <area alt="강북구" title="강북구" href="/SBZoom/gangbuk" coords="307,98,25" shape="circle">
+        <area alt="성북구" title="성북구" href="/SBZoom/sungbuk" coords="313,159,28" shape="circle">
+        <area alt="중랑구" title="중랑구" href="/SBZoom/jungrang" coords="421,161,28" shape="circle">
+        <area alt="동대문구" title="동대문구" href="/SBZoom/dongdaemun" coords="370,191,23" shape="circle">
+        <area alt="종로" title="종로" href="/SBZoom/jongro" coords="270,184,22" shape="circle">
+        <area alt="은평구" title="은평구" href="/SBZoom/dobong" coords="202,128,31" shape="circle">
+        <area alt="서대문구" title="서대문구" href="/SBZoom/seodaemun" coords="217,197,25" shape="circle">
+        <area alt="중구" title="중구" href="/SBZoom/joonggu" coords="294,226,17" shape="circle">
+        <area alt="성동구" title="성동구" href="/SBZoom/sungdong" coords="354,232,24" shape="circle">
+        <area alt="광진구" title="광진구" href="/SBZoom/gwangjn" coords="409,244,22" shape="circle">
+        <area alt="용산구" title="용산구" href="/SBZoom/yongsan" coords="271,263,26" shape="circle">
+        <area alt="마포구" title="마포구" href="/SBZoom/mapo" coords="191,233,19" shape="circle">
+      
+        <area alt="강동구" title="강동구" href="/SBZoom/gangdong" coords="482,227,30" shape="circle">
+        <area alt="송파구" title="송파구" href="/SBZoom/songpa" coords="443,306,28" shape="circle">
+        <area alt="강남구" title="강남구" href="/SBZoom/kangnam" coords="365,320,31" shape="circle">
+        <area alt="서초구" title="서초구" href="/SBZoom/seocho" coords="307,347,28" shape="circle">
+        <area alt="동작구" title="동작구" href="/SBZoom/dongjak" coords="241,306,22" shape="circle">
+        <area alt="관악구" title="관악구" href="/SBZoom/gwanak" coords="228,370,29" shape="circle">
+        <area alt="영등포구" title="영등포구" href="/SBZoom/yungdeungpo" coords="177,276,20" shape="circle">
+      
+        <area alt="금천구" title="금천구" href="/SBZoom/geumcheon" coords="163,374,26" shape="circle">
+        <area alt="구로구" title="구로구" href="/SBZoom/guro" coords="91,331,26" shape="circle">
+        <area alt="양천구" title="양천구" href="/SBZoom/yangcheon" coords="121,267,26" shape="circle">
+        <area alt="강서구" title="강서구" href="/SBZoom/gangseo" coords="63,200,48" shape="circle">
+      </map>
+
+      </div>
+    </div>
+      <!-- Small button groups (default and split) -->
+ <div class="btn-group col-sm-2">
+  <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% for gu1,gu in guzip %}
+    <li><a class="dropdown-item" href="/{{gu1}}/res_{{gu1}}">{{gu}}</a></li>
+
+    {% endfor %}
+  </ul>
+</div>
+</div>
+    
+</div>
+</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+
+  </div>
+</div>
+
+<div class="mt-5 p-4 bg-dark text-white text-center">
+  <p>Footer</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
+   <script>
+   $(document).ready(function() {
+	   $('img[usemap]').rwdImageMaps();
+   });
+   </script>
+
+</body>
+</html>
