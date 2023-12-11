@@ -22,14 +22,17 @@ gulist1 = ['kangnam','gangdong','gangbuk','gangseo','gwanak','gwangjin','guro','
            ]
 guzip = list(zip(gulist1,gulist))
 
+menuNames=["외식업","서비스업","소매업","전체","일반","프렌차이즈","점포전체","전체매출"]
+menus=["eatOut","service","retail","total","ilban","franchise","totalStores","totalSales"]
+menuzip=list(zip(menuNames,menus))
 
 # /SBZoom/
 def home(request):
-    return render(request, 'kangnam/home.html', {'guzip':guzip})
+    return render(request, 'kangnam/home.html', {'guzip':guzip,'menuzip':menuzip})
 
 # /SBZoom/kangnam/
 def index(request):
-    return render(request, 'kangnam/index.html', {'guzip':guzip})
+    return render(request, 'kangnam/index.html', {'guzip':guzip,'menuzip':menuzip})
 
 # /SBZoom/kangnam/eatOut
 def eatOut(request):
@@ -49,7 +52,7 @@ def eatOut(request):
     ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
 
     
-    return render(request, 'kangnam/eatOut.html', {'guzip':guzip,'title':title, 'qlist':qlist, 'ilban':ilban,'franchise':franchise,'total':total,'sales':sales,'ana_zip':ana_zip})
+    return render(request, 'kangnam/eatOut.html', {'guzip':guzip,'title':title, 'qlist':qlist, 'ilban':ilban,'franchise':franchise,'total':total,'sales':sales,'ana_zip':ana_zip,'menuzip':menuzip})
     
 # /SBZoom/kangnam/service    
 def service(request):
@@ -77,12 +80,14 @@ def service(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
+
 
     return render(request, 'kangnam/service.html',context)
 
 # /SBZoom/kangnam/retail
 def retail(request):
-    q=GuModel.objects.filter(QQ(code="R")) #gangnam_gumodel에서 code가 R(소매업)인 데이타
+    q=GuModel.objects.filter(Q(code="R")) #gangnam_gumodel에서 code가 R(소매업)인 데이타
 
     qlist =[str(a.quarter) for a in q ]
     ilban =[int(a.ilban) for a in q]
@@ -104,6 +109,8 @@ def retail(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    
+    context['menuzip'] = menuzip
 
     return render(request, 'kangnam/retail.html', context)
 
@@ -131,6 +138,7 @@ def total(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'kangnam/total.html', context)
     
@@ -166,6 +174,7 @@ def ilban(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'kangnam/ilban.html', context)
 
@@ -199,6 +208,7 @@ def franchise(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'kangnam/franchise.html', context)
 
@@ -232,10 +242,11 @@ def totalStores(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'kangnam/totalStores.html', context)
 
-# /SBZoom/kangnam/totalSaels
+# /SBZoom/kangnam/totalSales
 def totalSales(request):
     q1=GuModel.objects.filter(Q(code="E")) #gangnam_gumodel에서 code가 E(외식업)인 데이타
     q2=GuModel.objects.filter(Q(code="S")) #gangnam_gumodel에서 code가 S(서비스업)인 데이타
@@ -265,6 +276,8 @@ def totalSales(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+
+    context['menuzip'] = menuzip
 
     return render(request, 'kangnam/totalSales.html', context)
 

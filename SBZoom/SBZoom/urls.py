@@ -20,6 +20,7 @@ from kangnam import views #SBZoom home페이지용 view를 kananam app의 views�
 
 
 urlpatterns = [
+    path('',views.home, name="index"),
     path('admin/', admin.site.urls),
     path('SBZoom/',views.home, name="home"),
     path('SBZoom/kangnam/',include('kangnam.urls')),

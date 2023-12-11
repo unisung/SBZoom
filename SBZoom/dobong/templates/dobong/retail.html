@@ -1,0 +1,101 @@
+{% extends 'dobong/base.html' %}
+{% load static %}
+{% block content %}
+           
+<script>
+  const ctx1 = document.getElementById('myChart1');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '도봉구 소매업 일반점포',
+        data: {{ilban}},
+        borderWidth: 1,
+        borderColor:"#3e95cd",
+              fill: true,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx2 = document.getElementById('myChart2');
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '도봉구 소매업 프렌차이즈',
+        data: {{franchise}},
+        borderWidth: 1,
+        borderColor: "#8e5ea2",
+              fill: true,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx3 = document.getElementById('myChart3');
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '도봉구 소매업 전체',
+        data: {{total}},
+        borderWidth: 1,
+        borderColor: "#e8c3b9",
+              fill: true,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  const ctx4 = document.getElementById('myChart4');
+  new Chart(ctx4, {
+    type: 'line',
+    data: {
+      labels: {{qlist|safe}},
+      datasets: [{
+        label: '도봉구 소매업 매출액(억)',
+        data: {{sales}},
+        borderWidth: 1,
+        borderColor: "#c45850",
+              fill: true,
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
