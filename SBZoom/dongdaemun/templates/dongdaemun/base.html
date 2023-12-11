@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> SBZoom </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+      }
+    caption{ background:black; color:white;}
+    .dropdown-menu.show{--bs-dropdown-min-width: 5rem;}
+    #intro-title{background-image: linear-gradient(#8FBC8F, #6495ED);}
+    #intro-title h1{ color:#ADFF2F;}
+    </style>
+</head>
+<body>
+
+  <div class="p-5 bg-primary text-white text-center bg-opacity-50" id="intro-title">
+    <h1 class="fw-bold">welcome SBZoom site</h1>
+    <p class="fw-semibold">서울시 상권 분석 사이트!</p> 
+  </div>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/SBZoom">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul><!-- navbar-nav -->
+      <ul>
+            <li style="align-items:end;">
+           <!-- Small button groups (default and split) -->
+           <div class="btn-group col-sm-1" >
+            <div class="dropdown">
+             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="opacity:0.5;">
+              구명
+             </a>
+    
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {% for gu1,gu in guzip %}
+              <li style="width:80%"><a class="dropdown-item" href="/SBZoom/{{gu1}}/" style="font-size:0.7rem">{{gu}}</a></li>
+              {% endfor %}
+              </ul>
+            </div><!-- dropdown-->
+          </div><!-- btn-group col-sm-1 -->
+       </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+     
+      <div class="col-sm-2 border border-warning">
+        <table class="table caption-top  table-stiped table-bordered table-hover table-sm" style="font-size:0.65rem; font-weight:bold;">
+          <caption class="text-center text-warning">{{title|first}}</caption>
+          <tr>
+           {% for t in title %}
+           <td >{{t}}</td>
+           {% endfor %}
+         </tr>
+         
+          {% for gigan,ilban, franchise, total, sale in ana_zip %}
+          <tr >
+            <td>{{gigan}} </td><td>{{ilban}}</td><td>{{franchise}} </td><td>{{total}}</td><td>{{sale}}</td>
+          </tr>
+          {% endfor %}
+        </table><!-- table -->
+      </div><!-- col-sm-2 -->    
+
+
+      <div class="col-sm-9" style="background:yellowgreen transparent">
+        <div class="container text-center">
+            <div class="row">
+              <div class="col"><canvas id="myChart1"></canvas></div>
+              <div class="col"><canvas id="myChart2"></canvas></div>
+            </div>
+            <div class="row">
+              <div class="col"><canvas id="myChart3"></canvas></div>
+              <div class="col"><canvas id="myChart4"></canvas></div>
+            </div>
+        </div> <!--container text-center -->
+      </div><!-- col-sm-10 -->
+      
+      
+
+        <!-- Small button groups (default and split) -->
+        <div class="btn-group col-sm-1">
+          <div class="dropdown">
+             <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              구분
+             </a>
+    
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {% for menuName,menu in menuzip %}
+              <li style="width:80%"><a class="dropdown-item" href="/SBZoom/dongdaemun/{{menu}}" style="font-size:0.7rem;font-weight:bold;">{{menuName}}</a></li>
+              {% endfor %}
+              </ul>
+          </div><!-- dropdown-->
+        </div><!-- btn-group col-sm-1 -->
+    </div><!--row -->
+</div><!-- container-fluid mt-3-->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ 
+{% block content %}
+
+{% endblock %}
+
+<div class="container-fluid mt-3 p-4 bg-dark text-white text-center">
+    <p>Footer</p>
+</div>
+
+</body>
+</html>
