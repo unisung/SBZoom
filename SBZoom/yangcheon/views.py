@@ -17,22 +17,27 @@ gulist = ['강남구','강동구','강북구','강서구','관악구','광진구
           '노원구','도봉구','동대문구','동작구','마포구','서대문구','서초구','성동구',
           '성북구','송파구','양천구','영등포','용산구','은평구','종로구','중구','중랑구'
           ]
-
 gulist1 = ['kangnam','gangdong','gangbuk','gangseo','gwanak','gwangjin','guro','geumcheon',
 	   'nowon','dobong','dongdaemun','dongjak','mapo','seodaemun','seocho','seongdong',
 	   'seongbuk','songpa','yangcheon','yeongdeungpo','yongsan','eunpyeong','jongro','junggu','jungnang'            
            ]
-
 guzip = list(zip(gulist1,gulist))
 
+menuNames=["외식업","서비스업","소매업","전체","일반","프렌차이즈","점포전체","전체매출"]
+menus=["eatOut","service","retail","total","ilban","franchise","totalStores","totalSales"]
+menuzip=list(zip(menuNames,menus))
 
-# /SBZoom/gangdong/
+# /SBZoom/yangcheon/
 def index(request):
-    return render(request, 'gangdong/index.html', {'guzip':guzip})
+    context={}
+    context['guzip']=guzip
+    context['menuzip']=menuzip
 
-# /SBZoom/gangdong/eatOut
+    return render(request, 'yangcheon/index.html',context)
+
+# /SBZoom/yangcheon/eatOut
 def eatOut(request):
-    q=GuModel.objects.filter(Q(code="E")) # gangdong_gumodel 에서 code가 E(외식업)인 데이타
+    q=GuModel.objects.filter(Q(code="E")) # yangcheon_gumodel 에서 code가 E(외식업)인 데이타
     
     qlist =[str(a.quarter) for a in q ]
     ilban =[int(a.ilban) for a in q]
@@ -43,16 +48,25 @@ def eatOut(request):
     print(qlist)
     #print(ilban)
 
-    title=['강동구 외식업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
-     
+    title=['양천구 외식업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
     ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
+     
+    context={}
+    context['guzip'] = guzip
+    context['title'] = title
+    context['qlist'] = qlist
+    context['ilban'] = ilban
+    context['franchise'] = franchise
+    context['total'] = total
+    context['sales'] =  sales
+    context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
+    return render(request, 'yangcheon/eatOut.html', context)
     
-    return render(request, 'gangdong/eatOut.html', {'guzip':guzip,'title':title, 'qlist':qlist, 'ilban':ilban,'franchise':franchise,'total':total,'sales':sales,'ana_zip':ana_zip})
-    
-# /SBZoom/gangdong/service    
+# /SBZoom/yangcheon/service    
 def service(request):
-    q=GuModel.objects.filter(Q(code="S")) # gangdong_gumodel 에서 code가 S(서비스업)인 데이타
+    q=GuModel.objects.filter(Q(code="S")) # yangcheon_gumodel 에서 code가 S(서비스업)인 데이타
 
     qlist =[str(a.quarter) for a in q ]
     ilban =[int(a.ilban) for a in q]
@@ -63,7 +77,7 @@ def service(request):
     #print(qlist)
     #print(ilban)
 
-    title=['강동구 서비스업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
+    title=['양천구 서비스업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
      
     ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
 
@@ -76,12 +90,13 @@ def service(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    return render(request, 'gangdong/service.html',context)
+    return render(request, 'yangcheon/service.html',context)
 
-# /SBZoom/gangdong/retail
+# /SBZoom/yangcheon/retail
 def retail(request):
-    q=GuModel.objects.filter(Q(code="R")) # gangdong_gumodel에서 code가 R(소매업)인 데이타
+    q=GuModel.objects.filter(Q(code="R")) # yangcheon_gumodel에서 code가 R(소매업)인 데이타
 
     qlist =[str(a.quarter) for a in q ]
     ilban =[int(a.ilban) for a in q]
@@ -90,7 +105,7 @@ def retail(request):
     sales=[int(a.sales) for a in q]
 
 
-    title=['강동구 소매업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
+    title=['양천구 소매업 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
      
     ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
 
@@ -103,12 +118,13 @@ def retail(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    return render(request, 'gangdong/retail.html', context)
+    return render(request, 'yangcheon/retail.html', context)
 
-# /SBZoom/gangdong/total
+# /SBZoom/yangcheon/total
 def total(request):
-    q=GuModel.objects.filter( Q(code="W")) # gangdong_gumodel에서 code가 W(전체)인 데이타
+    q=GuModel.objects.filter( Q(code="W")) # yangcheon_gumodel에서 code가 W(전체)인 데이타
 
     qlist =[str(a.quarter) for a in q ]
     ilban =[int(a.ilban) for a in q]
@@ -117,7 +133,7 @@ def total(request):
     sales=[int(a.sales) for a in q]
 
 
-    title=['강동구 전체 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
+    title=['양천구 전체 상권 현황','일반 점포','프렌차이즈','전체','매출액(억)']
      
     ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
 
@@ -130,18 +146,19 @@ def total(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    return render(request, 'gangdong/total.html', context)
+    return render(request, 'yangcheon/total.html', context)
     
     
 #----------------------------------------------------------------#    
  
-# /SBZoom/gandong/ilban  
+# /SBZoom/yangcheon/ilban  
 def ilban(request):
-    q1=GuModel.objects.filter(Q(code="E")) # gangdong_gumodel에서 code가  E(외식업)인 데이타
-    q2=GuModel.objects.filter(Q(code="S")) # gangdong_gumodel에서 code가  S(서비스업)인 데이타
-    q3=GuModel.objects.filter(Q(code="R")) # gangdong_gumodel에서 code가  R(소매업)인 데이타   
-    q4=GuModel.objects.filter(Q(code="W")) # gangdong_gumodel에서 code가  W(외식+서비스+소매)인 데이타
+    q1=GuModel.objects.filter(Q(code="E")) # yangcheon_gumodel에서 code가  E(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(code="S")) # yangcheon_gumodel에서 code가  S(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(code="R")) # yangcheon_gumodel에서 code가  R(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(code="W")) # yangcheon_gumodel에서 code가  W(외식+서비스+소매)인 데이타
     
 
     qlist =[str(a.quarter) for a in q1 ]
@@ -151,7 +168,7 @@ def ilban(request):
     total=[int(a.sales) for a in q4]     #전체 일반
 
 
-    title=['강동구 일반점포 현황','외식업','서비스업','소매업','전체일반점포']
+    title=['양천구 일반점포 현황','외식업','서비스업','소매업','전체일반점포']
      
     ana_zip = list(zip(qlist,eatOut,service,retail,total))  
 
@@ -166,21 +183,16 @@ def ilban(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    print('qlist:',len(qlist),qlist)
-    print('eatOut:',len(eatOut),eatOut)
-    print('service:',len(service),service)
-    print('total:',len(total),total)
-    print('retail:',len(retail),retail)
+    return render(request, 'yangcheon/ilban.html', context)
 
-    return render(request, 'gangdong/ilban.html', context)
-
-# /SBZoom/gandong/franchise
+# /SBZoom/yangcheon/franchise
 def franchise(request):
-    q1=GuModel.objects.filter(Q(code="E")) # gangdong_gumodel에서 code가 E(외식업)인 데이타
-    q2=GuModel.objects.filter(Q(code="S")) # gangdong_gumodel에서 code가 S(서비스업)인 데이타
-    q3=GuModel.objects.filter(Q(code="R")) # gangdong_gumodel에서 code가 R(소매업)인 데이타   
-    q4=GuModel.objects.filter(Q(code="W")) # gangdong_gumodel에서 code가 W(외식+서비스+소매)인 데이타
+    q1=GuModel.objects.filter(Q(code="E")) # yangcheon_gumodel에서 code가 E(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(code="S")) # yangcheon_gumodel에서 code가 S(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(code="R")) # yangcheon_gumodel에서 code가 R(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(code="W")) # yangcheon_gumodel에서 code가 W(외식+서비스+소매)인 데이타
     
 
     qlist =[str(a.quarter) for a in q1 ]
@@ -190,7 +202,7 @@ def franchise(request):
     total=[int(a.sales) for a in q4]     #전체 일반
 
 
-    title=['강동구 프렌차이즈 현황','외식업','서비스업','소매업','전체일반점포']
+    title=['양천구 프렌차이즈 현황','외식업','서비스업','소매업','전체일반점포']
      
     ana_zip = list(zip(qlist,eatOut,service,retail,total))  
 
@@ -205,15 +217,16 @@ def franchise(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    return render(request, 'gangdong/franchise.html', context)
+    return render(request, 'yangcheon/franchise.html', context)
 
-# /SBZoom/gandong/totalStores
+# /SBZoom/yangcheon/totalStores
 def totalStores(request):
-    q1=GuModel.objects.filter(Q(code="E")) # gangdong_gumodel에서 code가 E(외식업)인 데이타
-    q2=GuModel.objects.filter(Q(code="S")) # gangdong_gumodel에서 code가 S(서비스업)인 데이타
-    q3=GuModel.objects.filter(Q(code="R")) # gangdong_gumodel에서 code가 R(소매업)인 데이타   
-    q4=GuModel.objects.filter(Q(code="W")) # gangdong_gumodel에서 code가 W(외식+서비스+소매)인 데이타
+    q1=GuModel.objects.filter(Q(code="E")) # yangcheon_gumodel에서 code가 E(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(code="S")) # yangcheon_gumodel에서 code가 S(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(code="R")) # yangcheon_gumodel에서 code가 R(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(code="W")) # yangcheon_gumodel에서 code가 W(외식+서비스+소매)인 데이타
     
 
     qlist =[str(a.quarter) for a in q1 ]
@@ -223,7 +236,7 @@ def totalStores(request):
     total=[int(a.total) for a in q4]     #전체 
 
 
-    title=['강동구 전체 점포 현황','외식업','서비스업','소매업','전체일반']
+    title=['양천구 전체 점포 현황','외식업','서비스업','소매업','전체일반']
      
     ana_zip = list(zip(qlist,eatOut,service,retail,total))  
 
@@ -238,15 +251,16 @@ def totalStores(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    return render(request, 'gangdong/totalStores.html', context)
+    return render(request, 'yangcheon/totalStores.html', context)
 
-# /SBZoom/gandong/totalSales
+# /SBZoom/yangcheon/totalSales
 def totalSales(request):
-    q1=GuModel.objects.filter(Q(code="E")) # gangdong_gumodel에서 code가 E(외식업)인 데이타
-    q2=GuModel.objects.filter(Q(code="S")) # gangdong_gumodel에서 code가 S(서비스업)인 데이타
-    q3=GuModel.objects.filter(Q(code="R")) # gangdong_gumodel에서 code가 R(소매업)인 데이타   
-    q4=GuModel.objects.filter(Q(code="W")) # gangdong_gumodel에서 code가 W(외식+서비스+소매)인 데이타
+    q1=GuModel.objects.filter(Q(code="E")) # yangcheon_gumodel에서 code가 E(외식업)인 데이타
+    q2=GuModel.objects.filter(Q(code="S")) # yangcheon_gumodel에서 code가 S(서비스업)인 데이타
+    q3=GuModel.objects.filter(Q(code="R")) # yangcheon_gumodel에서 code가 R(소매업)인 데이타   
+    q4=GuModel.objects.filter(Q(code="W")) # yangcheon_gumodel에서 code가 W(외식+서비스+소매)인 데이타
     
 
     qlist =[str(a.quarter) for a in q1 ]
@@ -256,7 +270,7 @@ def totalSales(request):
     total=[int(a.sales) for a in q4]     #전체 
 
 
-    title=['강동구 전체 점포 현황','외식업 매출액(억)','서비스업 매출액(억)','소매업 매출액(억)','전체 매출액(억)']
+    title=['양천구 전체 점포 현황','외식업 매출액(억)','서비스업 매출액(억)','소매업 매출액(억)','전체 매출액(억)']
      
     ana_zip = list(zip(qlist,eatOut,service,retail,total))  
 
@@ -271,6 +285,7 @@ def totalSales(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip']=menuzip
 
-    return render(request, 'gangdong/totalSales.html', context)
+    return render(request, 'yangcheon/totalSales.html', context)
 
