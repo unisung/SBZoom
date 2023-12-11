@@ -25,10 +25,13 @@ gulist1 = ['kangnam','gangdong','gangbuk','gangseo','gwanak','gwangjin','guro','
 
 guzip = list(zip(gulist1,gulist))
 
+menuNames=["외식업","서비스업","소매업","전체","일반","프렌차이즈","점포전체","전체매출"]
+menus=["eatOut","service","retail","total","ilban","franchise","totalStores","totalSales"]
+menuzip=list(zip(menuNames,menus))
 
 # /SBZoom/gangdong/
 def index(request):
-    return render(request, 'gangdong/index.html', {'guzip':guzip})
+    return render(request, 'gangdong/index.html', {'guzip':guzip,'menuzip':menuzip})
 
 # /SBZoom/gangdong/eatOut
 def eatOut(request):
@@ -48,7 +51,8 @@ def eatOut(request):
     ana_zip = list(zip(qlist,ilban,franchise,total,sales))  
 
     
-    return render(request, 'gangdong/eatOut.html', {'guzip':guzip,'title':title, 'qlist':qlist, 'ilban':ilban,'franchise':franchise,'total':total,'sales':sales,'ana_zip':ana_zip})
+    return render(request, 'gangdong/eatOut.html', {'guzip':guzip,'title':title, 'qlist':qlist, 'ilban':ilban,
+                                                    'franchise':franchise,'total':total,'sales':sales,'ana_zip':ana_zip,'menuzip':menuzip})
     
 # /SBZoom/gangdong/service    
 def service(request):
@@ -76,6 +80,7 @@ def service(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'gangdong/service.html',context)
 
@@ -103,6 +108,7 @@ def retail(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'gangdong/retail.html', context)
 
@@ -130,6 +136,7 @@ def total(request):
     context['total'] = total
     context['sales'] =  sales
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'gangdong/total.html', context)
     
@@ -166,12 +173,8 @@ def ilban(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
-    print('qlist:',len(qlist),qlist)
-    print('eatOut:',len(eatOut),eatOut)
-    print('service:',len(service),service)
-    print('total:',len(total),total)
-    print('retail:',len(retail),retail)
 
     return render(request, 'gangdong/ilban.html', context)
 
@@ -205,6 +208,7 @@ def franchise(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'gangdong/franchise.html', context)
 
@@ -238,6 +242,7 @@ def totalStores(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'gangdong/totalStores.html', context)
 
@@ -271,6 +276,7 @@ def totalSales(request):
     context['total'] =  total
 
     context['ana_zip'] = ana_zip
+    context['menuzip'] = menuzip
 
     return render(request, 'gangdong/totalSales.html', context)
 

@@ -1,8 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'gangdong/base.html' %}
 {% load static %}
-{% block content %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
+{% block content %}  
 <script>
   const ctx1 = document.getElementById('myChart1');
   new Chart(ctx1, {
@@ -13,6 +11,8 @@
         label: '강동구 외식업 일반점포',
         data: {{eatOut}},
         borderWidth: 1,
+        borderColor:"#3e95cd",
+              fill: true,
       }
       ]
     },
@@ -35,6 +35,8 @@
         label: '강동구 서비스업 일반점포',
         data: {{service}},
         borderWidth: 1,
+        borderColor: "#8e5ea2",
+              fill: true,
       }
       ]
     },
@@ -57,6 +59,8 @@
         label: '강동구 소매업 일반 점포',
         data: {{retail}},
         borderWidth: 1,
+        borderColor: "#e8c3b9",
+              fill: true,
       }
       ]
     },
@@ -79,6 +83,8 @@
         label: '강동구 전체 일반 점포',
         data: {{total}},
         borderWidth: 1,
+        borderColor: "#c45850",
+              fill: true,
       }
       ]
     },
